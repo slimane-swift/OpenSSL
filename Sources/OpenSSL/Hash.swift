@@ -44,7 +44,7 @@ internal extension HashType {
 		}
 	}
 
-	var function: ((UnsafePointer<UInt8>, Int, UnsafeMutablePointer<UInt8>) -> UnsafeMutablePointer<UInt8>) {
+	var function: ((UnsafePointer<UInt8>!, Int, UnsafeMutablePointer<UInt8>!) -> UnsafeMutablePointer<UInt8>!) {
 		switch self {
 		case .SHA1:
 			return COpenSSL.SHA1

@@ -76,7 +76,7 @@ public final class SSLServerStream: Stream {
         }
 	}
 
-	public func send(data: Data, timingOut deadline: Double) throws {
+	public func send(_ data: Data, timingOut deadline: Double) throws {
 		ssl.write(data)
 		try send()
 	}

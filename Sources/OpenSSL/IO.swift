@@ -42,7 +42,7 @@ public class IO {
         }
 	}
 
-	var bio: UnsafeMutablePointer<BIO>
+	var bio: UnsafeMutablePointer<BIO>?
 
 	public convenience init(filePath: String) throws {
 		try self.init(method: .Memory)
@@ -59,7 +59,7 @@ public class IO {
         }
 	}
 
-	public func write(data: Data) throws -> Int {
+	public func write(_ data: Data) throws -> Int {
         let result = data.withUnsafeBufferPointer {
             BIO_write(bio, $0.baseAddress, Int32($0.count))
         }
@@ -80,7 +80,7 @@ public class IO {
     }
 
     public var shouldRetry: Bool {
-        return (bio.pointee.flags & BIO_FLAGS_SHOULD_RETRY) != 0
+        return (bio!.pointee.flags & BIO_FLAGS_SHOULD_RETRY) != 0
     }
 
 	public func read() throws -> Data {
