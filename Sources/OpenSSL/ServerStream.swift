@@ -85,8 +85,8 @@ public final class SSLServerStream: Stream {
         try rawStream.flush(timingOut: deadline)
     }
 
-	public func close() -> Bool {
-        return rawStream.close()
+	public func close() throws {
+        try rawStream.close()
 	}
 
 	private func send() throws {

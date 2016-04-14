@@ -112,8 +112,8 @@ public final class SSLClientStream: Stream {
         try rawStream.flush()
     }
 
-    public func close() -> Bool {
-        return rawStream.close()
+    public func close() throws {
+        try rawStream.close()
     }
 
     private func send() throws {
