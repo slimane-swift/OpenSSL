@@ -47,7 +47,7 @@ public class IO {
 	public convenience init(filePath: String) throws {
 		try self.init(method: .Memory)
 		let file = try File(path: filePath)
-		try write(file.read())
+		try write(file.readAll())
 	}
 
 	public init(method: Method) throws {
