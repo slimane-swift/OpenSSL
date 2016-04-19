@@ -52,8 +52,9 @@ public final class SSLClientStream: Stream {
 		let data: Data
 		do {
             data = try rawStream.receive(upTo: byteCount, timingOut: deadline)
-		} catch StreamError.closedStream(let _data) {
-			data = _data
+		} catch StreamError.closedStream {
+            //FIXME: it was always Data([]) but from an error.
+			data = Data([])
 		}
 
 		try readIO.write(data)
@@ -71,8 +72,8 @@ public final class SSLClientStream: Stream {
 				do {
 					let data = try rawStream.receive(upTo: byteCount, timingOut: deadline)
 					try readIO.write(data)
-				} catch StreamError.closedStream(let _data) {
-					return decriptedData + _data
+				} catch StreamError.closedStream {
+					return decriptedData
 				}
             } catch Session.Error.ZeroReturn {
                 return decriptedData
